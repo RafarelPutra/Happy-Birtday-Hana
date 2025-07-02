@@ -82,10 +82,10 @@
 <body>
 
 <!-- Musik -->
-<audio id="bgMusic" src="SC1.mp3" autoplay></audio>
+<audio id="bgMusic" src="SC1.mp3" autoplay muted></audio>
 
 <div class="music-panel">
-  <button class="music-btn" onclick="togglePlay()" id="playBtn">❚❚</button>
+  <button class="music-btn" onclick="togglePlay()" id="playBtn">▶</button>
   <button class="music-btn" onclick="rewind()">↺</button>
   <button class="music-btn" onclick="forward()">↻</button>
   <button class="music-btn" onclick="restartAudio()">⟳</button>
@@ -171,9 +171,11 @@
 
   function showMessage() {
     document.getElementById("hiddenMsg").style.display = "block";
+    // Fallback: play jika autoplay diblokir
+    audio.muted = false;
+    audio.play();
   }
 
-  // Sinkronisasi tombol play/pause
   audio.addEventListener('play', () => {
     playBtn.textContent = '❚❚';
   });
@@ -182,13 +184,19 @@
     playBtn.textContent = '▶';
   });
 
-  // Autoplay fix
   window.addEventListener('DOMContentLoaded', () => {
+    // Unmute dan coba autoplay
+    audio.muted = false;
     const promise = audio.play();
     if (promise !== undefined) {
       promise
-        .then(() => { playBtn.textContent = '❚❚'; })
-        .catch(() => { playBtn.textContent = '▶'; });
+        .then(() => {
+          playBtn.textContent = '❚❚';
+        })
+        .catch(() => {
+          // Gagal autoplay: tombol manual bisa dipakai
+          playBtn.textContent = '▶';
+        });
     }
   });
 </script>

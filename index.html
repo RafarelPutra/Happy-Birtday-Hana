@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ulang Tahun Kamu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fbe9e7;
+      font-family: 'Indie Flower', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #4e342e;
+    }
+    .container {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      animation: fadeIn 1.2s ease;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #d84315;
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+    button {
+      background-color: #d84315;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #bf360c;
+    }
+    .hidden {
+      display: none;
+      margin-top: 25px;
+      font-size: 1.1em;
+      color: #5d4037;
+      animation: fadeIn 1s ease;
+      text-align: left;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 480px) {
+      p, .hidden {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Musik Otomatis -->
+<audio id="bgMusic" autoplay loop>
+  <source src="SC1.mp3" type="audio/mpeg">
+  Browser kamu tidak mendukung audio.
+</audio>
+
+<div class="container">
+  <h1>Selamat Ulang Tahun, Hana Vadilla</h1>
+  <p>
+    Aku nggak akan ngasih kamu bunga. <br>
+    Karena bunga bisa layu. <br>
+    Tapi aku bisa ngasih kamu doa yang nggak akan pernah berhenti tumbuh.
+  </p>
+  <button onclick="showMessage()">Apa Nich?</button>
+
+  <div class="hidden" id="hiddenMsg">
+    <p>
+      Selamat ulang tahun, Hanaaa.<br><br>
+
+      Kita memang jarang ngobrol.  
+      Kadang cuma liat story doang, terus scroll kayak nggak pernah kenal.  
+      Tapi kalau ada undangan ulang tahunmu lewat, aku masih ngerasa itu undangan juga buat aku...
+      walaupun yang datang duluan pasti pacarmu, dan walaupun juga aku mungkin gak di undang.
+      <br><br>
+
+      Aku tau aku bukan siapa-siapa.  
+      Bahkan kalau disuruh milih siapa yang paling kamu inget hari ini,  
+      namaku mungkin nggak masuk daftar.  
+      Tapi hari ini aku ingat kamu. Itu cukup buatku.
+      <br><br>
+
+      Semoga di umurmu yang sekarang, kamu tetap jadi kamu.  
+      Yang suka senyum tiba-tiba,  
+      yang kadang ngeselin tapi entah kenapa bikin orang betah.  
+      Yang jalannya biasa aja, tapi entah kenapa bisa bikin deg-degan.
+      <br><br>
+
+      Aku nggak berani minta banyak.  
+      Bahkan sekadar "makasih" dari kamu pun aku nggak ngarep.  
+      Aku cuma pengen bilang:  
+      kalau kamu bahagia sama dia, aku ikut bahagia...  
+      walau cuma lewat kolom story yang nggak pernah kamu tau aku buka.
+      <br><br>
+
+      Kalau hari ini kamu tiup lilin,  
+      semoga doamu diam-diam dijawab Tuhan secara terang-terangan.  
+      Dan kalau nanti kamu baca ini,  
+      semoga senyummu muncul walau cuma sedikit.
+      <br><br>
+
+      Aku cuma teman biasa.  
+      Tapi doaku nggak pernah biasa.
+      <br><br>
+      — Farel, yang nggak ngajak balikan, karena kita nggak pernah jadian.
+    </p>
+  </div>
+</div>
+
+<script>
+  function showMessage() {
+    document.getElementById("hiddenMsg").style.display = "block";
+  }
+
+  // Paksa autoplay untuk beberapa browser
+  window.addEventListener('load', function() {
+    const audio = document.getElementById('bgMusic');
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(_ => {
+        // autoplay berhasil
+      }).catch(error => {
+        console.warn("Autoplay mungkin diblokir. Sentuh layar untuk mulai musik.");
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

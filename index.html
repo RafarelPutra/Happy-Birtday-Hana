@@ -66,6 +66,7 @@
       justify-content: center;
       gap: 10px;
       margin-top: 15px;
+      flex-wrap: wrap;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(15px); }
@@ -84,7 +85,7 @@
 <audio id="bgMusic" src="SC1.mp3" autoplay></audio>
 
 <div class="music-panel">
-  <button class="music-btn" onclick="togglePlay()" id="playBtn">▶</button>
+  <button class="music-btn" onclick="togglePlay()" id="playBtn">❚❚</button>
   <button class="music-btn" onclick="rewind()">↺</button>
   <button class="music-btn" onclick="forward()">↻</button>
   <button class="music-btn" onclick="restartAudio()">⟳</button>
@@ -168,19 +169,20 @@
     audio.play();
   }
 
-  // Update tombol play/pause saat audio berubah
-  audio.addEventListener('play', () => {
-    playBtn.textContent = '❚❚';
-  });
-  audio.addEventListener('pause', () => {
-    playBtn.textContent = '▶';
-  });
-
   function showMessage() {
     document.getElementById("hiddenMsg").style.display = "block";
   }
 
-  // Autoplay fix untuk beberapa browser
+  // Sinkronisasi tombol play/pause
+  audio.addEventListener('play', () => {
+    playBtn.textContent = '❚❚';
+  });
+
+  audio.addEventListener('pause', () => {
+    playBtn.textContent = '▶';
+  });
+
+  // Autoplay fix
   window.addEventListener('DOMContentLoaded', () => {
     const promise = audio.play();
     if (promise !== undefined) {
